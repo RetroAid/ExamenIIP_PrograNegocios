@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_prestamo_equipo" model="ir.ui.view">
+        <field name="name">res.partner.form.prestamo.equipo</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="prestamos_equipo" string="Préstamos de equipo">
+                    <group>
+                        <field name="prestamos_activos"/>
+                    </group>
+                    <field name="prestamo_ids" readonly="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

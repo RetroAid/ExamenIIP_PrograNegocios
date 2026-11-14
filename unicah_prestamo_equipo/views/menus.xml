@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_prestamo_root" name="Préstamo de equipo" sequence="60"/>
+    <menuitem id="menu_prestamo_prestamos" name="Préstamos"
+              parent="menu_prestamo_root" action="unicah_prestamo_action" sequence="10"/>
+    <menuitem id="menu_prestamo_equipos" name="Equipos"
+              parent="menu_prestamo_root" action="unicah_equipo_action" sequence="20"/>
+</odoo>

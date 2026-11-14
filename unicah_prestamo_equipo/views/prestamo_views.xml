@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="unicah_prestamo_view_list" model="ir.ui.view">
+        <field name="name">unicah.prestamo.list</field>
+        <field name="model">unicah.prestamo</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="dias_retraso &gt; 0 and state == 'prestado'">
+                <field name="equipo_id"/>
+                <field name="partner_id"/>
+                <field name="fecha_salida"/>
+                <field name="fecha_limite"/>
+                <field name="dias_retraso"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="unicah_prestamo_view_form" model="ir.ui.view">
+        <field name="name">unicah.prestamo.form</field>
+        <field name="model">unicah.prestamo</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_entregar" string="Entregar equipo" type="object"
+                            class="btn-primary" invisible="state != 'borrador'"/>
+                    <button name="action_devolver" string="Registrar devolución" type="object"
+                            class="btn-primary" invisible="state != 'prestado'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="equipo_id" readonly="state != 'borrador'"/>
+                            <field name="partner_id" readonly="state != 'borrador'"/>
+                        </group>
+                        <group>
+                            <field name="fecha_salida" readonly="state != 'borrador'"/>
+                            <field name="fecha_limite" readonly="state == 'devuelto'"/>
+                            <field name="fecha_devolucion" invisible="state != 'devuelto'"/>
+                            <field name="dias_retraso" invisible="dias_retraso &lt;= 0"/>
+                        </group>
+                    </group>
+                    <field name="notas" placeholder="Notas del préstamo..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="unicah_prestamo_action" model="ir.actions.act_window">
+        <field name="name">Préstamos</field>
+        <field name="res_model">unicah.prestamo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
